@@ -663,7 +663,7 @@
       contato@sofialimastore.com.br
     </div>
     <p class="footer__bottom">
-      © 2026 Sofia Lima Store. Todos os direitos reservados.
+      © 2025 Sofia Lima Store. Todos os direitos reservados.
     </p>
   </footer>
 
@@ -837,7 +837,7 @@
     /** Cria e retorna o elemento de card de um produto */
     function criarCard(produto, indice) {
       const msgWhatsApp = encodeURIComponent(
-        `Olá, ainda tem esse produto: ${produto.nome}? estou interessado!`
+        `Olá, ainda tem esse produto ${produto.nome}? estou interessado!`
       );
       const linkWhatsApp = `https://wa.me/${WHATSAPP_NUMERO}?text=${msgWhatsApp}`;
 
@@ -860,7 +860,7 @@
         </div>
         <div class="card__body">
           <h3 class="card__nome">${escapeHTML(produto.nome)}</h3>
-          <p class="card__preco">${escapeHTML(produto.preco)}</p>
+          <p class="card__preco">R$ ${escapeHTML(produto.preco)}</p>
           <a
             class="card__btn"
             href="${linkWhatsApp}"
