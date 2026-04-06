@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sofia Lima Store — Moda feminina com elegância e sofisticação." />
+  <title>Sofia Lima Store</title>
+
+  <!-- Fontes elegantes: Cormorant Garamond (display) + DM Sans (corpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       VARIÁVEIS CSS — IDENTIDADE VISUAL
+    ============================================================ */
+    :root {
+      --creme:        #FAF7F2;
+      --creme-escuro: #F0EBE1;
+      --marrom-claro: #C4A882;
+      --marrom-medio: #9E7E5C;
+      --marrom-escuro: #5C3D2E;
+      --dourado:      #C9A84C;
+      --dourado-claro:#E2C97E;
+      --dourado-hover:#B8932F;
+      --texto-escuro: #2E2014;
+      --texto-medio:  #6B4F35;
+      --texto-leve:   #A08060;
+      --branco:       #FFFFFF;
+      --sombra-suave: 0 4px 24px rgba(90,50,20,0.10);
+      --sombra-card:  0 2px 16px rgba(90,50,20,0.09);
+      --raio:         14px;
+      --raio-btn:     50px;
+      --transicao:    0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--creme);
+      color: var(--texto-escuro);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { text-decoration: none; color: inherit; }
+
+    /* ============================================================
+       HERO BANNER
+    ============================================================ */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* Imagem de fundo via Unsplash */
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1200&q=80');
+      background-size: cover;
+      background-position: center 30%;
+      transform: scale(1.04);
+      animation: heroZoom 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroZoom {
+      from { transform: scale(1.04); }
+      to   { transform: scale(1.10); }
+    }
+
+    /* Overlay com gradiente terroso */
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(44, 24, 10, 0.62) 0%,
+        rgba(90, 55, 25, 0.48) 50%,
+        rgba(194, 160, 110, 0.30) 100%
+      );
+    }
+
+    /* Linha decorativa dourada */
+    .hero__deco {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero__deco span {
+      display: block;
+      height: 1px;
+      width: 48px;
+      background: var(--dourado-claro);
+      opacity: 0.85;
+    }
+
+    .hero__deco p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.70rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dourado-claro);
+    }
+
+    /* Nome da loja */
+    .hero__title {
+      position: relative;
+      z-index: 2;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 9vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.08;
+      color: var(--branco);
+      letter-spacing: 0.03em;
+      animation: fadeUp 1s 0.15s ease both;
+    }
+
+    .hero__title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--dourado-claro);
+    }
+
+    /* Frase de efeito */
+    .hero__sub {
+      position: relative;
+      z-index: 2;
+      margin-top: 18px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 3.5vw, 1.4rem);
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255,255,255,0.82);
+      letter-spacing: 0.05em;
+      animation: fadeUp 1s 0.3s ease both;
+    }
+
+    /* Scroll hint */
+    .hero__scroll {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: fadeUp 1s 0.6s ease both;
+    }
+
+    .hero__scroll span {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .hero__scroll-line {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, var(--dourado-claro), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.15); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       SEÇÃO DE FILTROS
+    ============================================================ */
+    .filters-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 247, 242, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(196, 168, 130, 0.25);
+      padding: 14px 0;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 0 20px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .filters::-webkit-scrollbar { display: none; }
+
+    .filter-btn {
+      flex-shrink: 0;
+      padding: 9px 22px;
+      border: 1.5px solid var(--marrom-claro);
+      border-radius: var(--raio-btn);
+      background: transparent;
+      color: var(--texto-medio);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: background var(--transicao), color var(--transicao), border-color var(--transicao), box-shadow var(--transicao);
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--dourado);
+      color: var(--dourado-hover);
+    }
+
+    .filter-btn.ativo {
+      background: linear-gradient(135deg, var(--dourado), var(--marrom-medio));
+      border-color: transparent;
+      color: var(--branco);
+      font-weight: 500;
+      box-shadow: 0 4px 16px rgba(201, 168, 76, 0.38);
+    }
+
+    /* ============================================================
+       ÁREA PRINCIPAL DO CATÁLOGO
+    ============================================================ */
+    .catalogo-section {
+      padding: 40px 16px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .catalogo-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .catalogo-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.7rem, 5vw, 2.6rem);
+      font-weight: 300;
+      color: var(--marrom-escuro);
+      letter-spacing: 0.04em;
+    }
+
+    .catalogo-header p {
+      margin-top: 8px;
+      font-size: 0.82rem;
+      color: var(--texto-leve);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Linha decorativa */
+    .divider-dourado {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 14px auto 0;
+    }
+
+    .divider-dourado::before,
+    .divider-dourado::after {
+      content: '';
+      flex: 1;
+      max-width: 80px;
+      height: 1px;
+      background: var(--dourado);
+      opacity: 0.45;
+    }
+
+    .divider-dourado span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--dourado);
+      opacity: 0.7;
+    }
+
+    /* ============================================================
+       LOADER
+    ============================================================ */
+    .loader-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px;
+      gap: 20px;
+    }
+
+    .loader {
+      width: 44px;
+      height: 44px;
+      border: 2.5px solid var(--creme-escuro);
+      border-top-color: var(--dourado);
+      border-radius: 50%;
+      animation: spin 0.85s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loader-wrapper p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--texto-leve);
+      letter-spacing: 0.08em;
+    }
+
+    /* ============================================================
+       MENSAGEM DE ERRO
+    ============================================================ */
+    .erro-msg {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .erro-msg .erro-icone {
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+    }
+
+    .erro-msg h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--marrom-escuro);
+      margin-bottom: 8px;
+    }
+
+    .erro-msg p {
+      font-size: 0.85rem;
+      color: var(--texto-leve);
+    }
+
+    /* ============================================================
+       GRID DE PRODUTOS
+    ============================================================ */
+    .grid-produtos {
+      display: grid;
+      /* Mobile: 2 colunas; tablet: 3; desktop: 4 */
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    @media (min-width: 640px) {
+      .grid-produtos { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    }
+
+    @media (min-width: 1024px) {
+      .grid-produtos { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    }
+
+    /* ============================================================
+       CARD DE PRODUTO
+    ============================================================ */
+    .card {
+      background: var(--branco);
+      border-radius: var(--raio);
+      overflow: hidden;
+      box-shadow: var(--sombra-card);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform var(--transicao), box-shadow var(--transicao);
+      animation: cardIn 0.5s ease both;
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(22px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 36px rgba(90,50,20,0.16);
+    }
+
+    /* Imagem */
+    .card__img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--creme-escuro);
+    }
+
+    .card__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s ease;
+    }
+
+    .card:hover .card__img {
+      transform: scale(1.06);
+    }
+
+    /* Badge de categoria */
+    .card__badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(250, 247, 242, 0.88);
+      backdrop-filter: blur(6px);
+      padding: 3px 10px;
+      border-radius: 30px;
+      font-size: 0.60rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--marrom-medio);
+      border: 1px solid rgba(196, 168, 130, 0.35);
+    }
+
+    /* Conteúdo textual */
+    .card__body {
+      padding: 14px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .card__nome {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      font-weight: 400;
+      color: var(--texto-escuro);
+      line-height: 1.3;
+    }
+
+    .card__preco {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--marrom-medio);
+      letter-spacing: 0.02em;
+    }
+
+    /* Botão Comprar */
+    .card__btn {
+      display: block;
+      width: 100%;
+      padding: 11px 0;
+      margin-top: auto;
+      background: linear-gradient(135deg, var(--dourado), var(--marrom-medio));
+      color: var(--branco);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      text-align: center;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity var(--transicao), transform var(--transicao), box-shadow var(--transicao);
+      box-shadow: 0 3px 12px rgba(201, 168, 76, 0.30);
+    }
+
+    .card__btn:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(201, 168, 76, 0.42);
+    }
+
+    .card__btn:active {
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       MENSAGEM SEM PRODUTOS
+    ============================================================ */
+    .sem-produtos {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .sem-produtos p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--texto-leve);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--marrom-escuro);
+      color: rgba(255,255,255,0.65);
+      padding: 44px 24px 32px;
+      text-align: center;
+    }
+
+    .footer__logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--dourado-claro);
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .footer__logo em { font-style: italic; }
+
+    .footer__tagline {
+      font-size: 0.70rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 28px;
+    }
+
+    .footer__divider {
+      width: 40px;
+      height: 1px;
+      background: var(--dourado);
+      opacity: 0.4;
+      margin: 0 auto 26px;
+    }
+
+    .footer__info {
+      font-size: 0.78rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.50);
+    }
+
+    .footer__info strong {
+      color: rgba(255,255,255,0.70);
+      font-weight: 400;
+    }
+
+    .footer__bottom {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.70rem;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.08em;
+    }
+
+    /* ============================================================
+       UTILITÁRIOS / ACESSIBILIDADE
+    ============================================================ */
+    :focus-visible {
+      outline: 2px solid var(--dourado);
+      outline-offset: 3px;
+    }
+
+    /* Oculta elemento sem removerem do fluxo de acessibilidade */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       HERO BANNER
+  ============================================================ -->
+  <header class="hero" role="banner" aria-label="Banner Sofia Lima Store">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__overlay" aria-hidden="true"></div>
+
+    <div class="hero__deco" aria-hidden="true">
+      <span></span>
+      <p>Coleção 2025</p>
+      <span></span>
+    </div>
+
+    <h1 class="hero__title">
+      Sofia <em>Lima</em><br>Store
+    </h1>
+
+    <p class="hero__sub">
+      "Elegância que conta a sua história."
+    </p>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <div class="hero__scroll-line"></div>
+      <span>Ver coleção</span>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       FILTROS DE CATEGORIA
+  ============================================================ -->
+  <nav class="filters-wrapper" aria-label="Filtros de categoria">
+    <div class="filters" role="list" id="filtros">
+      <!-- Gerado dinamicamente pelo JS após carregar categorias -->
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       CATÁLOGO DE PRODUTOS
+  ============================================================ -->
+  <main class="catalogo-section">
+    <div class="catalogo-header">
+      <h2>Nossa Coleção</h2>
+      <p>Peças selecionadas para você</p>
+      <div class="divider-dourado" aria-hidden="true"><span></span></div>
+    </div>
+
+    <!-- Grid onde os cards serão renderizados pelo JS -->
+    <div class="grid-produtos" id="grid-produtos" role="list" aria-live="polite" aria-label="Lista de produtos">
+      <!-- Loader inicial -->
+      <div class="loader-wrapper" style="grid-column: 1/-1;" id="loader" aria-label="Carregando produtos...">
+        <div class="loader" role="status"></div>
+        <p>Carregando coleção…</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer aria-label="Rodapé">
+    <div class="footer__logo"><em>Sofia Lima</em> Store</div>
+    <p class="footer__tagline">Moda feminina com alma</p>
+    <div class="footer__divider"></div>
+    <div class="footer__info">
+      <strong>Sofia Lima Comércio de Roupas LTDA</strong><br>
+      CNPJ: 12.345.678/0001-99<br>
+      Rua das Magnólias, 247 — Jardim das Flores<br>
+      São Paulo – SP, CEP 01310-100<br>
+      contato@sofialimastore.com.br
+    </div>
+    <p class="footer__bottom">
+      © 2025 Sofia Lima Store. Todos os direitos reservados.
+    </p>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* ----------------------------------------------------------
+       CONFIGURAÇÕES — altere apenas estas constantes
+    ---------------------------------------------------------- */
+
+    /** URL pública do CSV publicado pelo Google Sheets.
+     *  Para obter: Arquivo > Compartilhar > Publicar na web > CSV
+     *  Exemplo real: https://docs.google.com/spreadsheets/d/.../pub?output=csv
+     */
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQMaPhwvR7VR2wESB8zDkoftnB0oJpKhhanVWfczGB2tydIbcd38U43Dvkumhos11tJBh79rhhy6R82/pub?output=csv';
+
+    /** Número WhatsApp com DDI (somente dígitos) */
+    const WHATSAPP_NUMERO = '5512988433012';
+
+    /* ----------------------------------------------------------
+       ESTADO GLOBAL
+    ---------------------------------------------------------- */
+    let todosProdutos  = [];   // Todos os produtos carregados do CSV
+    let categoriaAtiva = 'Todas'; // Categoria selecionada atualmente
+
+    /* ----------------------------------------------------------
+       REFERÊNCIAS DO DOM
+    ---------------------------------------------------------- */
+    const gridEl   = document.getElementById('grid-produtos');
+    const filtrosEl = document.getElementById('filtros');
+
+    /* ----------------------------------------------------------
+       INICIALIZAÇÃO
+    ---------------------------------------------------------- */
+    document.addEventListener('DOMContentLoaded', carregarProdutos);
+
+    /* ----------------------------------------------------------
+       1. FETCH DO CSV
+    ---------------------------------------------------------- */
+    async function carregarProdutos() {
+      try {
+        const resposta = await fetch(CSV_URL);
+
+        if (!resposta.ok) {
+          throw new Error(`Erro HTTP ${resposta.status}`);
+        }
+
+        const texto = await resposta.text();
+        todosProdutos = parsearCSV(texto);
+
+        renderizarFiltros();
+        renderizarProdutos(todosProdutos);
+
+      } catch (erro) {
+        console.error('Falha ao carregar catálogo:', erro);
+        mostrarErro();
+      }
+    }
+
+    /* ----------------------------------------------------------
+       2. PARSER DE CSV
+       Lê texto CSV, pula cabeçalho, retorna array de objetos.
+       Estrutura esperada: Nome, Preço, Categoria, Imagem
+    ---------------------------------------------------------- */
+    function parsearCSV(texto) {
+      const linhas = texto.trim().split('\n');
+      // Remove a primeira linha (cabeçalho)
+      linhas.shift();
+
+      return linhas
+        .map(linha => {
+          // Divide por vírgula, respeitando campos entre aspas
+          const colunas = dividirCSV(linha);
+          if (colunas.length < 4) return null;
+
+          return {
+            nome:      limpar(colunas[0]),
+            preco:     limpar(colunas[1]),
+            categoria: limpar(colunas[2]),
+            imagem:    limpar(colunas[3]),
+          };
+        })
+        .filter(Boolean); // Remove linhas inválidas/nulas
+    }
+
+    /** Divide uma linha CSV respeitando campos entre aspas duplas */
+    function dividirCSV(linha) {
+      const resultado = [];
+      let atual = '';
+      let dentroDeAspas = false;
+
+      for (let i = 0; i < linha.length; i++) {
+        const c = linha[i];
+        if (c === '"') {
+          dentroDeAspas = !dentroDeAspas;
+        } else if (c === ',' && !dentroDeAspas) {
+          resultado.push(atual);
+          atual = '';
+        } else {
+          atual += c;
+        }
+      }
+      resultado.push(atual);
+      return resultado;
+    }
+
+    /** Remove espaços e quebras de linha residuais */
+    function limpar(valor) {
+      return (valor || '').trim().replace(/\r/g, '');
+    }
+
+    /* ----------------------------------------------------------
+       3. FILTROS
+    ---------------------------------------------------------- */
+    function renderizarFiltros() {
+      // Extrai categorias únicas dos produtos
+      const categorias = ['Todas', ...new Set(todosProdutos.map(p => p.categoria))];
+
+      filtrosEl.innerHTML = '';
+
+      categorias.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'filter-btn' + (cat === categoriaAtiva ? ' ativo' : '');
+        btn.textContent = cat;
+        btn.setAttribute('role', 'listitem');
+        btn.setAttribute('aria-pressed', cat === categoriaAtiva ? 'true' : 'false');
+
+        btn.addEventListener('click', () => {
+          categoriaAtiva = cat;
+          // Atualiza estado visual dos botões
+          document.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('ativo');
+            b.setAttribute('aria-pressed', 'false');
+          });
+          btn.classList.add('ativo');
+          btn.setAttribute('aria-pressed', 'true');
+
+          // Filtra e exibe
+          const filtrados = cat === 'Todas'
+            ? todosProdutos
+            : todosProdutos.filter(p => p.categoria === cat);
+
+          renderizarProdutos(filtrados);
+        });
+
+        filtrosEl.appendChild(btn);
+      });
+    }
+
+    /* ----------------------------------------------------------
+       4. RENDERIZAÇÃO DOS CARDS
+    ---------------------------------------------------------- */
+    function renderizarProdutos(produtos) {
+      gridEl.innerHTML = '';
+
+      if (produtos.length === 0) {
+        gridEl.innerHTML = `
+          <div class="sem-produtos" role="status">
+            <p>Nenhuma peça encontrada nesta categoria.</p>
+          </div>`;
+        return;
+      }
+
+      produtos.forEach((produto, indice) => {
+        const card = criarCard(produto, indice);
+        gridEl.appendChild(card);
+      });
+    }
+
+    /** Cria e retorna o elemento de card de um produto */
+    function criarCard(produto, indice) {
+      const msgWhatsApp = encodeURIComponent(
+        `Olá, ainda tem esse produto ${produto.nome}? estou interessado!`
+      );
+      const linkWhatsApp = `https://wa.me/${WHATSAPP_NUMERO}?text=${msgWhatsApp}`;
+
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.setAttribute('role', 'listitem');
+      // Atraso escalonado para efeito de entrada em cascata
+      card.style.animationDelay = `${indice * 0.06}s`;
+
+      card.innerHTML = `
+        <div class="card__img-wrap">
+          <img
+            class="card__img"
+            src="${escapeHTML(produto.imagem)}"
+            alt="Foto de ${escapeHTML(produto.nome)}"
+            loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&q=70'"
+          />
+          <span class="card__badge">${escapeHTML(produto.categoria)}</span>
+        </div>
+        <div class="card__body">
+          <h3 class="card__nome">${escapeHTML(produto.nome)}</h3>
+          <p class="card__preco">${escapeHTML(produto.preco)}</p>
+          <a
+            class="card__btn"
+            href="${linkWhatsApp}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Comprar ${escapeHTML(produto.nome)} via WhatsApp"
+          >
+            Comprar
+          </a>
+        </div>
+      `;
+
+      return card;
+    }
+
+    /* ----------------------------------------------------------
+       5. TELA DE ERRO
+    ---------------------------------------------------------- */
+    function mostrarErro() {
+      gridEl.innerHTML = `
+        <div class="erro-msg" style="grid-column: 1/-1;" role="alert">
+          <div class="erro-icone">✦</div>
+          <h3>Não foi possível carregar o catálogo</h3>
+          <p>Verifique sua conexão ou tente novamente em instantes.</p>
+        </div>`;
+    }
+
+    /* ----------------------------------------------------------
+       6. UTILITÁRIO — Escape HTML para prevenir XSS
+    ---------------------------------------------------------- */
+    function escapeHTML(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+  </script>
+</body>
+</html>
