@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Sofia Lima Store — Moda feminina com elegância e sofisticação." />
-  <title>Sofia Lima Store</title>
+  <title>Close Arraso</title>
 
   <!-- Fontes elegantes: Cormorant Garamond (display) + DM Sans (corpo) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -607,7 +607,7 @@
     </div>
 
     <h1 class="hero__title">
-      Sofia <em>Lima</em><br>Store
+        Closet <em>Arraso</em><br>
     </h1>
 
     <p class="hero__sub">
@@ -652,18 +652,18 @@
        FOOTER
   ============================================================ -->
   <footer aria-label="Rodapé">
-    <div class="footer__logo"><em>Sofia Lima</em> Store</div>
+    <div class="footer__logo"><em>Closet</em> Arraso</div>
     <p class="footer__tagline">Moda feminina do seu jeito</p>
     <div class="footer__divider"></div>
     <div class="footer__info">
-      <strong>Sofia Lima LTDA</strong><br>
+      <strong>Closet Arraso</strong><br>
       CNPJ: xx.xxx.xxx/xxxx-xx<br>
-      Rua Tereza Machado Nº 40<br>
-      São José dos Campos – SP, CEP 12229-076<br>
-      contato@sofialimastore.com.br
+      Rua Durvalina Silva Águiar, 575c - Jardim Santa Ines 1<br>
+      São José dos Campos – SP, CEP 12248-210<br>
+      contato_closearraso@gmail.com
     </div>
     <p class="footer__bottom">
-      © 2026 Sofia Lima Store. Todos os direitos reservados.
+      © 2026 Closet Arraso. Todos os direitos reservados.
     </p>
   </footer>
 
@@ -682,7 +682,7 @@
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQMaPhwvR7VR2wESB8zDkoftnB0oJpKhhanVWfczGB2tydIbcd38U43Dvkumhos11tJBh79rhhy6R82/pub?output=csv';
 
     /** Número WhatsApp com DDI (somente dígitos) */
-    const WHATSAPP_NUMERO = '5512988202395';
+    const WHATSAPP_NUMERO = '5512988290414';
 
     /* ----------------------------------------------------------
        ESTADO GLOBAL
@@ -837,7 +837,7 @@
     /** Cria e retorna o elemento de card de um produto */
     function criarCard(produto, indice) {
       const msgWhatsApp = encodeURIComponent(
-        `Olá, ainda tem esse produto: ${produto.nome}? estou interessada!`
+        `Olá, ainda tem esse produto ${produto.nome}? estou interessado!`
       );
       const linkWhatsApp = `https://wa.me/${WHATSAPP_NUMERO}?text=${msgWhatsApp}`;
 
